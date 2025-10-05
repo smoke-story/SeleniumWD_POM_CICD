@@ -5,10 +5,10 @@ class Links:
     # CURRENT_LANGUAGE = lambda driver: driver.find_element(By.CSS_SELECTOR, "html").get_attribute("lang")
     BASE_URL = "https://selenium1py.pythonanywhere.com/"
     LOGIN_PAGE_LINK = f"{BASE_URL}accounts/login/"
-    PRODUCT_PAGE_LINK = f"{BASE_URL}catalogue/the-shellcoders-handbook_209/"
+    PRODUCT_PAGE_LINK = f"{BASE_URL}catalogue/coders-at-work_207/"
     LOGIN_URL_PART = "login"
     BASKET_URL_PART = "basket"
-    PRODUCT_URL_PART = "the-shellcoders-handbook_209" 
+    PRODUCT_URL_PART = "coders-at-work_207"
 
 
     

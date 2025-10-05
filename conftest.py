@@ -3,7 +3,6 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
 
-
 def pytest_addoption(parser):
 
     parser.addoption("--browser_name",
@@ -11,7 +10,7 @@ def pytest_addoption(parser):
                      default="chrome",
                      help="Choose browser: chrome or firefox"
                     )
-    
+
     parser.addoption("--language",
                     action="store",
                     default="en",
@@ -49,4 +48,4 @@ def driver(request):
 
 @pytest.fixture
 def login(driver: webdriver.Chrome | webdriver.Firefox):
-    driver.get("")
+    driver.get("https://selenium1py.pythonanywhere.com/ru/accounts/login/")

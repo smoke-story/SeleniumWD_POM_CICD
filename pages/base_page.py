@@ -3,6 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from .locators import BasePageLocators, Links
 from selenium.common import NoSuchElementException, TimeoutException
+from selenium.common.exceptions import NoAlertPresentException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
@@ -21,8 +22,8 @@ class BasePage:
     def open_main_page(self):
         self.driver.get(Links.BASE_URL)
         self.wait.until(EC.url_contains(Links.BASE_URL), \
-                        f"BASE_URL is not opened. Current: {self.current_url()}")
-    
+                        f"BASE_URL is not opened. Current: {self.current_url}")
+
 
     def open_login_page(self):
         self.driver.get(Links.LOGIN_PAGE_LINK)
@@ -42,7 +43,6 @@ class BasePage:
     def should_be_login_link(self):
         assert self.is_element_present(*BasePageLocators.LOGIN_LINK), \
             "Login link is not presented"
-
 
 
     # =====  Вспомогательные методы и свойства для объектов страниц  ===== #
@@ -94,7 +94,7 @@ class BasePage:
             if is_visible:
                 print("Элемент находится в viewport")
             else:
-                print("Элемент НЕ находится в viewport")
+                print("Элемент не находится в viewport")
         except NoSuchElementException:
             print("Элемент не найден")
     
@@ -102,7 +102,22 @@ class BasePage:
     def current_language(self):
         return self.driver.find_element(*BasePageLocators.LANGUAGE_ELEMENT).get_attribute("lang")
     
-    
+    @property
     def current_url(self):
         return self.driver.current_url
-    
+
+
+    def solve_quiz_and_get_code(self):
+        alert = self.driver.switch_to.alert
+        x = alert.text.split(" ")[2]
+        answer = str(math.log(abs(12 * math.sin(float(x)))))
+        print("ОТВЕТ:", answer)
+        alert.send_keys(answer)
+        alert.accept()
+        # try:
+        #     alert = self.driver.switch_to.alert
+        #     alert_text = alert.text
+        #     print(f"Your code: {alert_text}")
+        #     alert.accept()
+        # except NoAlertPresentException:
+        #     print("No second alert presented")

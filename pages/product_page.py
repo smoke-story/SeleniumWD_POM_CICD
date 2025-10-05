@@ -15,12 +15,31 @@ class ProductPage(BasePage):
         self.driver.find_element(*ProductPageLocators.ADD_TO_BASKET_BUTTON).click()
 
 
+    def should_be_product_title_in_message(self):
+        product_title = self.driver.find_element(*ProductPageLocators.PRODUCT_TITLE).text
+        success_added_message = self.wait.until(
+            EC.presence_of_element_located(ProductPageLocators.MESSAGE_SUCCESSFUL_ADDING)).text
+        assert product_title == success_added_message, f"'success added message: {success_added_message}' is not correct"
+
+
+    def should_be_product_price_in_message(self):
+        product_price = self.driver.find_element(*ProductPageLocators.PRODUCT_PRICE).text
+        basket_price_message = self.wait.until(
+            EC.presence_of_element_located(ProductPageLocators.MESSAGE_BASKET_PRICE)).text
+        assert product_price == basket_price_message, "basket price message is not correct"
+
+
+    def should_be_link_parameter_in_url(self):
+        assert self.wait.until(EC.url_contains(ProductPageLocators.LINK_PARAMETER)), \
+        "url is no contains offer parameter"
+
+
     def should_not_be_success_message(self):
         assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE), \
             "Success message is presented, but should not be"
     
 
-    def message_should_dissapear(self):
+    def message_should_disappear(self):
         assert self.is_disappeared is True, \
             "Success message is presented, but should dissapeared"
     

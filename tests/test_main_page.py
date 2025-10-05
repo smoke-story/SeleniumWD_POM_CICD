@@ -1,5 +1,5 @@
 import pytest
-from ..config.base_test import BaseTest as page
+from config.base_test import BaseTest as page
 
 
 @pytest.mark.login_guest
