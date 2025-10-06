@@ -1,5 +1,6 @@
 from .base_page import BasePage
-from .locators import BasketPageLocators
+from .locators import BasketPageLocators, Links
+from selenium.webdriver.support import expected_conditions as EC
 
 class BasketPage(BasePage):
 
@@ -27,6 +28,11 @@ class BasketPage(BasePage):
         "uk": "Ваш кошик пустий.",
         "zh-cn": "Your basket is empty."
     }
+
+    def open(self):
+        self.driver.get(Links.BASKET_PAGE)
+        self.wait.until(EC.url_contains(Links.BASKET_URL_PART), f"url: {Links.BASKET_PAGE} is not opened")
+
 
     def should_not_be_items_in_basket(self):
         basket_items = self.is_not_element_present(*BasketPageLocators.BASKET_ITEMS)

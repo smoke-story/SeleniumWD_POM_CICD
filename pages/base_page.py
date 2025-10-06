@@ -19,6 +19,11 @@ class BasePage:
     
     # =============  Тестовые методы для статичных блоков сайта.  ============= #
 
+    def should_be_user_icon(self):
+        assert self.wait.until(EC.presence_of_element_located(BasePageLocators.USER_ICON)), \
+        "Something wrong with user icon"
+
+
     def open_main_page(self):
         self.driver.get(Links.BASE_URL)
         self.wait.until(EC.url_contains(Links.BASE_URL), \
@@ -48,7 +53,6 @@ class BasePage:
     # =====  Вспомогательные методы и свойства для объектов страниц  ===== #
 
     def is_element_present(self, method, selector):
-
         try:
             self.driver.find_element(method, selector)
         except NoSuchElementException:
@@ -59,7 +63,7 @@ class BasePage:
 
     def is_not_element_present(self, method, selector, timeout=4):
         try:
-            self.wait.until(
+            WebDriverWait(self.driver, timeout, poll_frequency=0.2).until(
                 EC.presence_of_element_located((method, selector)))
         except TimeoutException:
             return True
@@ -69,7 +73,7 @@ class BasePage:
 
     def is_disappeared(self, method, selector, timeout=4):
         try:
-            self.wait.until_not(
+            WebDriverWait(self.driver, timeout, poll_frequency=0.2).until_not(
                 EC.presence_of_element_located((method, selector)))
         except TimeoutException:
             return False

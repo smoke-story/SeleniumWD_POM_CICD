@@ -6,9 +6,10 @@ from selenium.webdriver.support import expected_conditions as EC
 class ProductPage(BasePage):
 
 
-    def open_product_page(self, url_parameter=""):
-        self.driver.get(f"{Links.PRODUCT_PAGE_LINK}{url_parameter}")
-        self.wait.until(EC.url_contains(Links.PRODUCT_URL_PART), f"{Links.PRODUCT_PAGE_LINK} is not opened")
+    def open(self):
+        self.driver.get(Links.PRODUCT_PAGE_LINK)
+        self.wait.until(EC.url_contains(Links.PRODUCT_URL_PART), \
+                        f"url: {Links.PRODUCT_PAGE_LINK} is not opened")
 
 
     def add_product_to_basket(self):
@@ -19,7 +20,8 @@ class ProductPage(BasePage):
         product_title = self.driver.find_element(*ProductPageLocators.PRODUCT_TITLE).text
         success_added_message = self.wait.until(
             EC.presence_of_element_located(ProductPageLocators.MESSAGE_SUCCESSFUL_ADDING)).text
-        assert product_title == success_added_message, f"'success added message: {success_added_message}' is not correct"
+        assert product_title == success_added_message, \
+            f"'success added message: {success_added_message}' is not correct"
 
 
     def should_be_product_price_in_message(self):

@@ -45,7 +45,3 @@ def driver(request):
     print("\nquit driver..")
     driver.quit()
 
-
-@pytest.fixture
-def login(driver: webdriver.Chrome | webdriver.Firefox):
-    driver.get("https://selenium1py.pythonanywhere.com/ru/accounts/login/")

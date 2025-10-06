@@ -6,6 +6,7 @@ class Links:
     BASE_URL = "https://selenium1py.pythonanywhere.com/"
     LOGIN_PAGE_LINK = f"{BASE_URL}accounts/login/"
     PRODUCT_PAGE_LINK = f"{BASE_URL}catalogue/coders-at-work_207/"
+    BASKET_PAGE = f"{BASE_URL}basket"
     LOGIN_URL_PART = "login"
     BASKET_URL_PART = "basket"
     PRODUCT_URL_PART = "coders-at-work_207"
@@ -30,6 +31,9 @@ class MainPageLocators:
 class LoginPageLocators:
 
     LOGIN_FORM = (By.CSS_SELECTOR, "#login_form")
+    LOGIN_EMAIL = (By.CSS_SELECTOR, "form#login_form input[type='email']")
+    LOGIN_PASSWORD = (By.CSS_SELECTOR, "form#login_form input[type='password']")
+    LOGIN_BUTTON = (By.CSS_SELECTOR, "form#login_form button[type='submit']")
     REGISTER_FORM = (By.CSS_SELECTOR, "#register_form")
     REGISTER_EMAIL = (By.CSS_SELECTOR, "#id_registration-email")
     REGISTER_PASSWORD1 = (By.CSS_SELECTOR, "input[name='registration-password1']")
