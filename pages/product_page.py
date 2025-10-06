@@ -6,9 +6,9 @@ from selenium.webdriver.support import expected_conditions as EC
 class ProductPage(BasePage):
 
 
-    def open(self):
-        self.driver.get(Links.PRODUCT_PAGE_LINK)
-        self.wait.until(EC.url_contains(Links.PRODUCT_URL_PART), \
+    def open(self, parameter=""):
+        self.driver.get(f"{Links.PRODUCT_PAGE_LINK}{parameter}")
+        self.wait.until(EC.url_contains(Links.PRODUCT_URL_PART),
                         f"url: {Links.PRODUCT_PAGE_LINK} is not opened")
 
 

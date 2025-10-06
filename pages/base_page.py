@@ -14,7 +14,7 @@ class BasePage:
 
         self.driver = driver
         # self.driver.implicitly_wait(timeout)
-        self.wait = WebDriverWait(self.driver, 15, poll_frequency=0.2)
+        self.wait = WebDriverWait(self.driver, 15)
     
     
     # =============  Тестовые методы для статичных блоков сайта.  ============= #
@@ -26,23 +26,26 @@ class BasePage:
 
     def open_main_page(self):
         self.driver.get(Links.BASE_URL)
-        self.wait.until(EC.url_contains(Links.BASE_URL), \
+        self.wait.until(EC.url_contains(Links.BASE_URL),
                         f"BASE_URL is not opened. Current: {self.current_url}")
 
 
     def open_login_page(self):
         self.driver.get(Links.LOGIN_PAGE_LINK)
-        self.wait.until(EC.url_contains(Links.LOGIN_URL_PART), "LOGIN_PAGE_LINK is not opened")
+        self.wait.until(EC.url_contains(Links.LOGIN_URL_PART),
+                        "LOGIN_PAGE_LINK is not opened")
     
 
     def go_to_login_page(self):
         self.driver.find_element(*BasePageLocators.LOGIN_LINK).click()
-        self.wait.until(EC.url_contains(Links.LOGIN_URL_PART), "LOGIN_PAGE_LINK is not opened")
+        self.wait.until(EC.url_contains(Links.LOGIN_URL_PART),
+                        "LOGIN_PAGE_LINK is not opened")
 
     
     def go_to_basket_page(self):
         self.driver.find_element(*BasePageLocators.BASKET_BUTTON).click()
-        self.wait.until(EC.url_contains(Links.BASKET_URL_PART), "BASKET_LINK is not opened")
+        self.wait.until(EC.url_contains(Links.BASKET_URL_PART),
+                        "BASKET_LINK is not opened")
 
 
     def should_be_login_link(self):
