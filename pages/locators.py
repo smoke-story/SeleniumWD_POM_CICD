@@ -2,20 +2,20 @@ from selenium.webdriver.common.by import By
 
 
 class Links:
-    # CURRENT_LANGUAGE = lambda driver: driver.find_element(By.CSS_SELECTOR, "html").get_attribute("lang")
+    
     BASE_URL = "https://selenium1py.pythonanywhere.com/"
-    LOGIN_PAGE_LINK = f"{BASE_URL}accounts/login/"
+    LOGIN_PAGE_LINK = f"{BASE_URL}accounts/login"
     PRODUCT_PAGE_LINK = f"{BASE_URL}catalogue/coders-at-work_207/"
     BASKET_PAGE = f"{BASE_URL}basket"
     LOGIN_URL_PART = "login"
+    PASSWORD_RESET_PART = "password-reset"
     BASKET_URL_PART = "basket"
     PRODUCT_URL_PART = "coders-at-work_207"
 
 
-    
 class BasePageLocators:
 
-    LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
+    LOGIN_LINK = (By.CSS_SELECTOR, "a#login_link")
     LOGIN_LINK_INVALID = (By.CSS_SELECTOR, "#login_link_inc")
     LANGUAGE_ELEMENT = (By.CSS_SELECTOR, "html")
     BASKET_BUTTON = (By.CSS_SELECTOR, ".basket-mini a[href*='basket']")
@@ -33,7 +33,9 @@ class LoginPageLocators:
     LOGIN_FORM = (By.CSS_SELECTOR, "#login_form")
     LOGIN_EMAIL = (By.CSS_SELECTOR, "form#login_form input[type='email']")
     LOGIN_PASSWORD = (By.CSS_SELECTOR, "form#login_form input[type='password']")
+    RESET_PASSWORD_LINK = (By.CSS_SELECTOR, "#login_form a[href*=reset]")
     LOGIN_BUTTON = (By.CSS_SELECTOR, "form#login_form button[type='submit']")
+    SUCCESS_MESSAGE = (By.CSS_SELECTOR, ".alert-success")
     REGISTER_FORM = (By.CSS_SELECTOR, "#register_form")
     REGISTER_EMAIL = (By.CSS_SELECTOR, "#id_registration-email")
     REGISTER_PASSWORD1 = (By.CSS_SELECTOR, "input[name='registration-password1']")

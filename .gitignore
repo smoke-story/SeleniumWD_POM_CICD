@@ -50,10 +50,15 @@ __pypackages__/
 # Environments
 .env
 .venv
+.vscode
+.idea
 env/
 venv/
 ENV/
 env.bak/
 venv.bak/
 
-.idea
+
+.gitignore
+report/
+allure-results/

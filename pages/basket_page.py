@@ -1,6 +1,8 @@
+import allure
 from .base_page import BasePage
 from .locators import BasketPageLocators, Links
 from selenium.webdriver.support import expected_conditions as EC
+
 
 class BasketPage(BasePage):
 
@@ -29,16 +31,22 @@ class BasketPage(BasePage):
         "zh-cn": "Your basket is empty."
     }
 
-    def open(self):
+    @allure.step(f"Open: '{Links.BASKET_PAGE}' page")
+    def open(self) -> None:
         self.driver.get(Links.BASKET_PAGE)
-        self.wait.until(EC.url_contains(Links.BASKET_URL_PART), f"url: {Links.BASKET_PAGE} is not opened")
+        assert self.wait.until(EC.url_contains(Links.BASKET_URL_PART), \
+            f"Basket url is not correct: '{self.current_url}'")
 
 
-    def should_not_be_items_in_basket(self):
-        basket_items = self.is_not_element_present(*BasketPageLocators.BASKET_ITEMS)
-        assert basket_items, "Basket is not empty..."
-    
-    def should_be_empty_basket_message(self):
-        current_language = self.current_language()
+    @allure.step("Should not be items in basket")
+    def should_not_be_items_in_basket(self) -> None:
+        assert self.is_not_element_present(BasketPageLocators.BASKET_ITEMS), \
+            "Basket is not empty..."
+
+
+    @allure.step("should be empty basket message")
+    def should_be_empty_basket_message(self) -> None:
+        current_language = self.current_language
         message_basket = self.driver.find_element(*BasketPageLocators.BASKET_MESSAGE).text
-        assert self.languages_all[str(current_language)] in message_basket, "wqtqwtqwt"
+        assert self.languages_all[str(current_language)] in message_basket, \
+            "'basket message' is not correct"

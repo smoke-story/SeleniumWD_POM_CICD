@@ -3,7 +3,8 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
 
-def pytest_addoption(parser):
+
+def pytest_addoption(parser) -> None:
 
     parser.addoption("--browser_name",
                      action="store",
@@ -18,6 +19,7 @@ def pytest_addoption(parser):
                     "es, fi, fr, it, ko, nl, pl, pt, pt-br, ro, ru, sk, uk, zh-cn"
                     )
 
+
 @pytest.fixture(scope="function")
 def driver(request):
 
@@ -25,12 +27,21 @@ def driver(request):
     language = request.config.getoption("language")         # параметр для cmd: задать язык
 
     chrome_options = ChromeOptions()
-    chrome_options.add_experimental_option("prefs", {"intl.accept_languages": language})
-    # chrome_options.add_argument("--headless")
-    chrome_options.add_argument("--window-size=1600,900")
+    preferences = {
+        "intl.accept_languages": language,
+        # "credentials_enable_service": False,
+        # "profile.password_manager_enabled": False,
+        "profile.password_manager_leak_detection": False # функция обнаружения утечки паролей
+    }
+    chrome_options.add_experimental_option("prefs", preferences)
+    chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--start-maximized")
+    # chrome_options.add_argument("--window-size=1920,1080")
 
     firefox_options = FirefoxOptions()
     firefox_options.set_preference("intl.accept_languages", language)
+    firefox_options.add_argument("--headless")
+    chrome_options.add_argument("--start-maximized")
 
     if browser_name == "chrome":
         print("\nstart chrome driver for test..")
@@ -44,4 +55,3 @@ def driver(request):
     yield driver
     print("\nquit driver..")
     driver.quit()
-
