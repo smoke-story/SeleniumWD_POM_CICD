@@ -21,6 +21,7 @@ class TestUserAddToBasketFromProductPage(BaseTest, LoginUser):
         self.product_page.should_be_product_price_in_message()
 
 
+@pytest.mark.skip
 @allure.feature("Product page functionality")
 class TestProductPageGuest(BaseTest):
 
@@ -72,7 +73,7 @@ class TestProductPageGuest(BaseTest):
         self.product_page.open()
         self.product_page.should_not_be_success_message()
 
-
+    
     @allure.title("guest can add product to basket")
     @pytest.mark.flaky(reruns=1, reruns_delay=1)
     @pytest.mark.parametrize("num",

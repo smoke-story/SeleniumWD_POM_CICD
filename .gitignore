@@ -58,7 +58,7 @@ ENV/
 env.bak/
 venv.bak/
 
-
-.gitignore
+.git
+*.gitignore
 report/
 allure-results/

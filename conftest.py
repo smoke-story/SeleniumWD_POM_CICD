@@ -35,13 +35,15 @@ def driver(request):
     }
     chrome_options.add_experimental_option("prefs", preferences)
     chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--start-maximized")
     # chrome_options.add_argument("--window-size=1920,1080")
 
     firefox_options = FirefoxOptions()
     firefox_options.set_preference("intl.accept_languages", language)
     firefox_options.add_argument("--headless")
-    chrome_options.add_argument("--start-maximized")
+    firefox_options.add_argument("--no-sandbox")
+    firefox_options.add_argument("--start-maximized")
 
     if browser_name == "chrome":
         print("\nstart chrome driver for test..")

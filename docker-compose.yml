@@ -1,0 +1,17 @@
+services:
+  regression:
+    image: python:3.10.19-alpine3.22
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    volumes:
+      - ./:/usr/workspace
+
+    command: ["/bin/sh", "-c", "ls -la && cd tests && pytest --alluredir=allure-results"]
+
+    working_dir: /usr/workspace
+
+    environment:
+      - LOGIN=${LOGIN}
+      - PASSWORD=${PASSWORD}

@@ -7,7 +7,6 @@ from config.base_test import BaseTest, LoginUser
 @allure.feature("Guest can login from main page")
 class TestLoginFromMainPage(BaseTest):
 
-
     @allure.title("guest should see login link")
     def test_guest_should_see_login_link(self) -> None:
         self.main_page.open()
@@ -25,7 +24,6 @@ class TestLoginFromMainPage(BaseTest):
 @allure.feature("Functionality with authorized user")
 class TestMainPageUserAuthorized(BaseTest, LoginUser):
 
-
     @allure.title("user can see welcome text")
     @pytest.mark.xfail(reason="bug in fixing process...")
     def test_user_can_see_welcome_text(self) -> None:
@@ -42,7 +40,6 @@ class TestMainPageUserAuthorized(BaseTest, LoginUser):
 
 @allure.feature("Main page functionality")
 class TestMainPageGuest(BaseTest):
-
 
     @allure.title("guest cant see product in basket opened from main page")
     def test_guest_cant_see_product_in_basket_opened_from_main_page(self) -> None:

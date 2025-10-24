@@ -43,7 +43,6 @@ class LoginUser:
         base_page.wait.until(EC.url_contains("accounts/login"), \
                              f"url is not correct: {driver.current_url}")
         base_page.delete_all_cookies()
-        print("Not touched cookies: ", [i for i in driver.get_cookies()])
         driver.find_element(*LoginPageLocators.LOGIN_EMAIL).send_keys(Data.LOGIN)
         driver.find_element(*LoginPageLocators.LOGIN_PASSWORD).send_keys(Data.PASSWORD)
         driver.find_element(*LoginPageLocators.LOGIN_BUTTON).click()
