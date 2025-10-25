@@ -23,7 +23,7 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4.7.0
         with:
-          ssh-key: ${{ secrets.CI_TOKEN }}
+          token: ${{ secrets.CI_TOKEN }}
           branch: gh-pages
           folder: allure-report
           clean: true
