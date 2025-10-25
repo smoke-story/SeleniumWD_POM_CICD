@@ -3,15 +3,15 @@ FROM python:3.13.9-alpine3.22
 ENV PYTHONUNBUFFERED=1
 
 # update apk repo
-RUN echo "https://dl-4.alpinelinux.org/alpine/v3.23/main" >> /etc/apk/repositories && \
-    echo "https://dl-4.alpinelinux.org/alpine/v3.23/community" >> /etc/apk/repositories
+# RUN echo "https://dl-4.alpinelinux.org/alpine/v3.23/main" >> /etc/apk/repositories && \
+#     echo "https://dl-4.alpinelinux.org/alpine/v3.23/community" >> /etc/apk/repositories
 
 RUN apk add --no-cache chromium chromium-chromedriver
 
 # Get all the prereqs
-RUN wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub
-RUN wget https://github.com/sgerrand/alpine-pkg-glibc/releases/tag/2.35-r1/glibc-2.35-r1.apk
-RUN wget https://github.com/sgerrand/alpine-pkg-glibc/releases/tag/2.35-r1/glibc-bin-2.35-r1.apk
+# RUN wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub
+# RUN wget https://github.com/sgerrand/alpine-pkg-glibc/releases/tag/2.35-r1/glibc-2.35-r1.apk
+# RUN wget https://github.com/sgerrand/alpine-pkg-glibc/releases/tag/2.35-r1/glibc-bin-2.35-r1.apk
 
 # Installing allure-commandline
 RUN apk update && \
