@@ -1,6 +1,6 @@
 services:
   regression:
-    image: python:3.10.19-alpine3.22
+    image: python:3.13.9-alpine3.22
     build:
       context: .
       dockerfile: Dockerfile
