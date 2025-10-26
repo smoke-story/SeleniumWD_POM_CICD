@@ -21,6 +21,7 @@ class TestLoginFromMainPage(BaseTest):
         self.login_page.should_be_login_url()
 
 
+@pytest.mark.user
 @allure.feature("Functionality with authorized user")
 class TestMainPageUserAuthorized(BaseTest, LoginUser):
 

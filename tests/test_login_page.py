@@ -18,7 +18,7 @@ class TestLoginPage(BaseTest):
         self.login_page.open()
         self.login_page.should_be_login_form()
 
-
+    
     @allure.severity("minor")
     @allure.title("guest can register")
     def test_guest_can_register(self) -> None:

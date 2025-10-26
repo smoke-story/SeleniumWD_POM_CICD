@@ -3,6 +3,7 @@ import allure
 from config.base_test import BaseTest, LoginUser
 
 
+@pytest.mark.user
 @allure.feature("User add item to basket from product page")
 class TestUserAddToBasketFromProductPage(BaseTest, LoginUser):
 
