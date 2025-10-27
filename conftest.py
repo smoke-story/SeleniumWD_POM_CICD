@@ -19,10 +19,8 @@ def pytest_addoption(parser) -> None:
                     "es, fi, fr, it, ko, nl, pl, pt, pt-br, ro, ru, sk, uk, zh-cn"
                     )
 
-
 @pytest.fixture(scope="function")
 def driver(request):
-
     browser_name = request.config.getoption("browser_name") # параметр для cmd: задать браузер
     language = request.config.getoption("language")         # параметр для cmd: задать язык
 
@@ -37,7 +35,6 @@ def driver(request):
     chrome_options.add_argument("--headless")
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--start-maximized")
-    # chrome_options.add_argument("--window-size=1920,1080")
 
     firefox_options = FirefoxOptions()
     firefox_options.set_preference("intl.accept_languages", language)

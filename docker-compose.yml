@@ -1,11 +1,10 @@
 services:
-
   regression:
 
     build:
       context: .
       dockerfile: Dockerfile
-    
+
     volumes:
       - ./:/usr/workspace
 

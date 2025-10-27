@@ -12,15 +12,12 @@ class MainPage(BasePage):
         self.wait.until(EC.url_contains(Links.BASE_URL),
             f"'BASE URL' is wrong. Current: {self.current_url}")
 
-
     @allure.step("should be welcome text")
     def should_be_welcome_text(self) -> None:
         assert self.is_element_present(MainPageLocators.WELCOME_TEXT), \
             "Welcome text is missing."
 
-
     @allure.step("should be promo items")
     def should_be_promo_items(self) -> None:
         assert self.is_element_present(MainPageLocators.PROMO_ITEMS), \
             "Promo items is missing."
-    

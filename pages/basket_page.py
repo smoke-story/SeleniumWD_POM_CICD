@@ -34,15 +34,13 @@ class BasketPage(BasePage):
     @allure.step(f"Open: '{Links.BASKET_PAGE}' page")
     def open(self) -> None:
         self.driver.get(Links.BASKET_PAGE)
-        assert self.wait.until(EC.url_contains(Links.BASKET_URL_PART), \
+        self.wait.until(EC.url_contains(Links.BASKET_URL_PART),
             f"Basket url is not correct: '{self.current_url}'")
-
 
     @allure.step("Should not be items in basket")
     def should_not_be_items_in_basket(self) -> None:
         assert self.is_not_element_present(BasketPageLocators.BASKET_ITEMS), \
             "Basket is not empty..."
-
 
     @allure.step("should be empty basket message")
     def should_be_empty_basket_message(self) -> None:

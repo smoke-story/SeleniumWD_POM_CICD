@@ -34,7 +34,7 @@ class BaseTest:
 
 
 class LoginUser:
-
+    
     @allure.title("Preparing to user login...")
     @pytest.fixture(autouse=True)
     def login_setup(self, driver: webdriver.Chrome | webdriver.Firefox) -> None:
