@@ -11,7 +11,6 @@ from pages.locators import LoginPageLocators
 from .data import Data
 
 
-
 class BaseTest:
 
     data: Data
