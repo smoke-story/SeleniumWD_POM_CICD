@@ -74,9 +74,9 @@ class TestProductPageGuest(BaseTest):
 
     @allure.severity("blocker")
     @allure.title("guest can add product to basket")
-    @pytest.mark.flaky(reruns=1, reruns_delay=1)
     @pytest.mark.parametrize("num",
             [_ if _ != 7 else pytest.param(7, marks=pytest.mark.xfail) for _ in range(0, 10)])
+    @pytest.mark.flaky(reruns=1, reruns_delay=1)
     def test_guest_can_add_product_to_basket(self, num) -> None:
         self.product_page.open(f"?promo=offer{num}")
         self.base_page.delete_all_cookies()

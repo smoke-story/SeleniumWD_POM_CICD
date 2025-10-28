@@ -32,7 +32,7 @@ def driver(request):
         "profile.password_manager_leak_detection": False # функция обнаружения утечки паролей
     }
     chrome_options.add_experimental_option("prefs", preferences)
-    chrome_options.add_argument("--headless")
+    # chrome_options.add_argument("--headless")
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--start-maximized")
 
